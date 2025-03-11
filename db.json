@@ -6,9 +6,9 @@
       "author": "12",
       "category": "Fiction",
       "isbn": 20,
-      "active": true,
+      "active": false,
       "createdAt": "2025-03-11T09:51:01.065Z",
-      "modifiedAt": null
+      "modifiedAt": "2025-03-11T10:56:44.894Z"
     }
   ]
 }

@@ -31,8 +31,8 @@ const Dashboard = () => {
       active: !book.active,
       modifiedAt: new Date().toISOString(),
     };
-    setBooks((prev) => prev.map((b) => (b.id === book.id ? updatedBook : b)));
     await updateBook(updatedBook);
+    fetchBooks();
   };
 
   const handleDelete = async (id: string) => {
