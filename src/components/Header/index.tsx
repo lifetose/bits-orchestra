@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className='bg-blue-600'>
-      <header className='max-w-[1350px] mx-auto'>
-        <ul className='flex space-x-6 p-2'>
+      <header className='max-w-[1350px] mx-auto p-[10px]'>
+        <ul className='flex space-x-6'>
           <li>
             <Link
               to='/'

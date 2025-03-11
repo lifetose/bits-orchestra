@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className='bg-blue-600'>
-      <footer className='flex flex-col justify-center items-center max-w-[1350px] mx-auto p-2'>
+      <footer className='flex flex-col justify-center items-center max-w-[1350px] mx-auto p-[10px]'>
         <a
           href='https://github.com/lifetose?tab=repositories'
           target='_blank'
