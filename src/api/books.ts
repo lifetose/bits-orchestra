@@ -15,7 +15,7 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
-const API_URL = "http://localhost:50010/books";
+const API_URL = "http://localhost:5000/books";
 
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {

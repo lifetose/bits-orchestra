@@ -46,8 +46,6 @@ const Dashboard = () => {
     );
   }, [books, filter]);
 
-  if (loading) return <div>Loading books...</div>;
-
   return (
     <div className='flex flex-col items-start w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
       {loading ? (
