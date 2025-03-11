@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <div>
-      <header className='bg-blue-600 p-4'>
+    <div className='h-[70px] bg-blue-600'>
+      <header className='flex flex-col justify-center items-start h-full w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
         <ul className='flex space-x-6'>
           <li>
             <Link
