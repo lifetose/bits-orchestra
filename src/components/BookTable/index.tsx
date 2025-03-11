@@ -44,7 +44,7 @@ const BookTable: React.FC<BookTableProps> = ({
               <td className='px-4 py-2'>
                 {book.modifiedAt ? formatDate(book.modifiedAt, timeZone) : "--"}
               </td>
-              <td className='flex px-4 py-2'>
+              <td className='flex px-4 py-2 gap-2'>
                 <button
                   onClick={() => navigate(`/book/${book.id}`)}
                   className='px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded'

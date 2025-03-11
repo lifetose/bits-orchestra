@@ -5,9 +5,9 @@
       "author": "123",
       "category": "Fiction",
       "isbn": 202,
-      "active": true,
+      "active": false,
       "createdAt": "2025-03-11T22:20:12.101Z",
-      "modifiedAt": "2025-03-11T22:21:57.268Z",
+      "modifiedAt": "2025-03-11T22:27:23.511Z",
       "id": "1cbf"
     }
   ]
