@@ -51,7 +51,7 @@ const BookForm = () => {
       };
       fetchBook();
     }
-  }, [id, isEditMode]);
+  }, [id, isEditMode, navigate]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
