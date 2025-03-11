@@ -7,7 +7,7 @@
       "isbn": 2232,
       "active": false,
       "createdAt": "2025-03-10T17:44:41.426Z",
-      "modifiedAt": "2025-03-11T06:49:52.958Z",
+      "modifiedAt": "2025-03-11T08:52:22.332Z",
       "id": "7c98"
     },
     {
@@ -16,19 +16,9 @@
       "author": "123",
       "category": "Fiction",
       "isbn": 123,
-      "active": true,
+      "active": false,
       "createdAt": "2025-03-11T05:34:58.704Z",
-      "modifiedAt": null
-    },
-    {
-      "id": "",
-      "title": "121",
-      "author": "111",
-      "category": "Fiction",
-      "isbn": 10,
-      "active": true,
-      "createdAt": "2025-03-11T06:01:52.021Z",
-      "modifiedAt": null
+      "modifiedAt": "2025-03-11T08:52:20.516Z"
     }
   ]
 }
