@@ -36,18 +36,22 @@ const BookForm = () => {
   useEffect(() => {
     if (isEditMode) {
       const fetchBook = async () => {
-        const book = await getBookById(id);
-        if (book) {
-          setForm({
-            title: book.title,
-            author: book.author,
-            category: book.category,
-            isbn: book.isbn,
-          });
-        } else {
+        try {
+          const book = await getBookById(id);
+          if (book) {
+            setForm({
+              title: book.title,
+              author: book.author,
+              category: book.category,
+              isbn: book.isbn,
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching book:", error);
           navigate("/not-found");
         }
       };
+
       fetchBook();
     }
   }, [id, isEditMode, navigate]);
