@@ -37,7 +37,6 @@ const BookForm = () => {
     if (isEditMode) {
       const fetchBook = async () => {
         const book = await getBookById(id);
-
         if (book) {
           setForm({
             title: book.title,
