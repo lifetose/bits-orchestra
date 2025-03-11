@@ -42,6 +42,8 @@ const BookForm = () => {
             category: book.category,
             isbn: book.isbn,
           });
+        } else {
+          navigate("/not-found");
         }
       };
       fetchBook();
