@@ -1,5 +1,8 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+
+import { v4 as uuidv4 } from "uuid";
+
 import { addBook, updateBook, getBooks, IBook } from "../../api/books";
 
 interface IBookForm {
@@ -80,7 +83,7 @@ const BookForm = () => {
       active: true,
       createdAt: new Date().toISOString(),
       modifiedAt: isEditMode ? new Date().toISOString() : null,
-      id: isEditMode ? id : "",
+      id: isEditMode ? id : uuidv4(),
     };
 
     if (isEditMode) {
