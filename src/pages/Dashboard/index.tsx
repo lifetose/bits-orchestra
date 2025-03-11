@@ -80,21 +80,34 @@ const Dashboard = () => {
           >
             Add a Book
           </Link>
-          <div>
-            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-              <option value='all'>Show All</option>
-              <option value='active'>Show Active</option>
-              <option value='deactivated'>Show Deactivated</option>
-            </select>
-            <span>
-              Showing {filteredBooks.length} of {books.length}
-            </span>
-          </div>
-          <BookTable
-            books={filteredBooks}
-            onToggleActive={toggleActive}
-            onDelete={handleDelete}
-          />
+          {books.length === 0 ? (
+            <div>No books found.</div>
+          ) : (
+            <>
+              <div>
+                <select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                >
+                  <option value='all'>Show All</option>
+                  <option value='active'>Show Active</option>
+                  <option value='deactivated'>Show Deactivated</option>
+                </select>
+                <span>
+                  Showing {filteredBooks.length} of {books.length}
+                </span>
+              </div>
+              {filteredBooks.length === 0 ? (
+                <div>No books mathcing the filter.</div>
+              ) : (
+                <BookTable
+                  books={filteredBooks}
+                  onToggleActive={toggleActive}
+                  onDelete={handleDelete}
+                />
+              )}
+            </>
+          )}
         </>
       )}
     </div>
