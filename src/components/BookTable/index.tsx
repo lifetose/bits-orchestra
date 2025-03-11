@@ -40,7 +40,7 @@ const BookTable: React.FC<BookTableProps> = ({
               <td className='px-4 py-2'>{book.isbn}</td>
               <td className='px-4 py-2'>{formatDate(book.createdAt)}</td>
               <td className='px-4 py-2'>
-                {book.modifiedAt ? formatDate(book.modifiedAt) : null}
+                {book.modifiedAt ? formatDate(book.modifiedAt) : "--"}
               </td>
               <td className='flex px-4 py-2'>
                 <button
