@@ -46,9 +46,12 @@ export const addBook = async (book: IBook): Promise<IBook | null> => {
   }
 };
 
-export const updateBook = async (book: IBook): Promise<IBook | null> => {
+export const updateBook = async (
+  id: string,
+  book: IBook,
+): Promise<IBook | null> => {
   try {
-    const response = await fetch(`${API_URL}/${book.id}`, {
+    const response = await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(book),

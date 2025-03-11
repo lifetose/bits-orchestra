@@ -87,7 +87,7 @@ const BookForm = () => {
     };
 
     if (isEditMode) {
-      await updateBook(bookData);
+      await updateBook(id, bookData);
       alert("Book updated successfully!");
     } else {
       await addBook(bookData);
