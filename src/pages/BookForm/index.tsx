@@ -31,6 +31,7 @@ const BookForm = () => {
 
   const [errors, setErrors] = useState<IErrors>({});
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isLoading, setLoading] = useState(id ? true : false);
 
   useEffect(() => {
     if (isEditMode) {
@@ -48,6 +49,8 @@ const BookForm = () => {
         } catch (error) {
           console.error("Error fetching book:", error);
           navigate("/not-found");
+        } finally {
+          setLoading(false);
         }
       };
       fetchBook();
@@ -101,6 +104,10 @@ const BookForm = () => {
 
     navigate("/");
   };
+
+  if (isLoading) {
+    return <></>;
+  }
 
   return (
     <div className='flex flex-col items-start w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
