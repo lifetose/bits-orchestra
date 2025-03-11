@@ -93,58 +93,112 @@ const BookForm = () => {
   };
 
   return (
-    <div className='book-form'>
-      <header>
-        <h1>{isEditMode ? "Edit Book" : "Add a Book"}</h1>
-        <Link to='/'>Back to Dashboard</Link>
+    <div className='max-w-2xl mx-auto p-6 my-2 bg-white shadow-md rounded-lg'>
+      <header className='mb-6'>
+        <h1 className='text-2xl font-semibold text-gray-700'>
+          {isEditMode ? "Edit Book" : "Add a Book"}
+        </h1>
+        <Link
+          to='/'
+          className='text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block'
+        >
+          Back to Dashboard
+        </Link>
       </header>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
-          <label>Book Title</label>
+          <label
+            htmlFor='title'
+            className='block text-sm font-medium text-gray-700'
+          >
+            Book Title
+          </label>
           <input
             type='text'
             name='title'
+            id='title'
             value={form.title}
             onChange={handleChange}
+            className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
           />
-          {errors.title && <span className='error'>{errors.title}</span>}
+          {errors.title && (
+            <span className='text-red-600 text-sm'>{errors.title}</span>
+          )}
         </div>
 
         <div>
-          <label>Author Name</label>
+          <label
+            htmlFor='author'
+            className='block text-sm font-medium text-gray-700'
+          >
+            Author Name
+          </label>
           <input
             type='text'
             name='author'
+            id='author'
             value={form.author}
             onChange={handleChange}
+            className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
           />
-          {errors.author && <span className='error'>{errors.author}</span>}
+          {errors.author && (
+            <span className='text-red-600 text-sm'>{errors.author}</span>
+          )}
         </div>
 
         <div>
-          <label>Category</label>
-          <select name='category' value={form.category} onChange={handleChange}>
+          <label
+            htmlFor='category'
+            className='block text-sm font-medium text-gray-700'
+          >
+            Category
+          </label>
+          <select
+            name='category'
+            id='category'
+            value={form.category}
+            onChange={handleChange}
+            className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+          >
             <option value=''>Select Category</option>
             <option value='Fiction'>Fiction</option>
             <option value='Non-Fiction'>Non-Fiction</option>
             <option value='Sci-Fi'>Sci-Fi</option>
             <option value='Biography'>Biography</option>
           </select>
-          {errors.category && <span className='error'>{errors.category}</span>}
+          {errors.category && (
+            <span className='text-red-600 text-sm'>{errors.category}</span>
+          )}
         </div>
 
         <div>
-          <label>ISBN</label>
+          <label
+            htmlFor='isbn'
+            className='block text-sm font-medium text-gray-700'
+          >
+            ISBN
+          </label>
           <input
             type='number'
             name='isbn'
+            id='isbn'
             value={form.isbn}
             onChange={handleChange}
+            className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
           />
-          {errors.isbn && <span className='error'>{errors.isbn}</span>}
+          {errors.isbn && (
+            <span className='text-red-600 text-sm'>{errors.isbn}</span>
+          )}
         </div>
 
-        <button type='submit'>{isEditMode ? "Edit Book" : "Add a Book"}</button>
+        <div>
+          <button
+            type='submit'
+            className='w-full mt-4 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          >
+            {isEditMode ? "Edit Book" : "Add a Book"}
+          </button>
+        </div>
       </form>
     </div>
   );

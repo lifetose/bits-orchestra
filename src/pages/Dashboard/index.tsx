@@ -37,13 +37,11 @@ const Dashboard = () => {
   });
 
   return (
-    <div className='dashboard'>
-      <header>
-        <h1>Book List</h1>
-        <Link to='/book'>Add a Book</Link>
-      </header>
+    <div>
+      <h1>Book List</h1>
+      <Link to='/book'>Add a Book</Link>
 
-      <div className='controls'>
+      <div>
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
           <option value='all'>Show All</option>
           <option value='active'>Show Active</option>

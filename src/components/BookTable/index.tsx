@@ -18,40 +18,61 @@ const BookTable: React.FC<BookTableProps> = ({
   const navigate = useNavigate();
 
   return (
-    <table className='book-table'>
-      <thead>
-        <tr>
-          <th>Book Title</th>
-          <th>Author Name</th>
-          <th>Category</th>
-          <th>ISBN</th>
-          <th>Created At</th>
-          <th>Modified/Edited At</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {books.map((book) => (
-          <tr key={book.id} className={!book.active ? "deactivated" : ""}>
-            <td>{book.title}</td>
-            <td>{book.author}</td>
-            <td>{book.category}</td>
-            <td>{book.isbn}</td>
-            <td>{formatDate(book.createdAt)}</td>
-            <td>{book.modifiedAt ? formatDate(book.modifiedAt) : null} </td>
-            <td>
-              <button onClick={() => navigate(`/edit/${book.id}`)}>Edit</button>
-              <button onClick={() => onToggleActive(book)}>
-                {book.active ? "Deactivate" : "Re-Activate"}
-              </button>
-              {!book.active && (
-                <button onClick={() => onDelete(book.id)}>Delete</button>
-              )}
-            </td>
+    <div className='overflow-x-auto'>
+      <table className='min-w-full table-auto border-collapse border border-gray-200'>
+        <thead>
+          <tr className='bg-gray-100 text-gray-600'>
+            <th className='px-4 py-2 text-left'>Book Title</th>
+            <th className='px-4 py-2 text-left'>Author Name</th>
+            <th className='px-4 py-2 text-left'>Category</th>
+            <th className='px-4 py-2 text-left'>ISBN</th>
+            <th className='px-4 py-2 text-left'>Created At</th>
+            <th className='px-4 py-2 text-left'>Modified/Edited At</th>
+            <th className='px-4 py-2 text-left'>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {books.map((book) => (
+            <tr key={book.id} className='bg-white hover:bg-gray-50'>
+              <td className='px-4 py-2'>{book.title}</td>
+              <td className='px-4 py-2'>{book.author}</td>
+              <td className='px-4 py-2'>{book.category}</td>
+              <td className='px-4 py-2'>{book.isbn}</td>
+              <td className='px-4 py-2'>{formatDate(book.createdAt)}</td>
+              <td className='px-4 py-2'>
+                {book.modifiedAt ? formatDate(book.modifiedAt) : null}
+              </td>
+              <td className='flex px-4 py-2'>
+                <button
+                  onClick={() => navigate(`/book/${book.id}`)}
+                  className='px-3 py-1 mr-2 text-sm font-medium text-blue-600 bg-blue-100 rounded hover:bg-blue-200 focus:outline-none'
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => onToggleActive(book)}
+                  className={`px-3 py-1 mr-2 text-sm font-medium rounded focus:outline-none ${
+                    book.active
+                      ? "text-yellow-600 bg-yellow-100 hover:bg-yellow-200"
+                      : "text-green-600 bg-green-100 hover:bg-green-200"
+                  }`}
+                >
+                  {book.active ? "Deactivate" : "Re-Activate"}
+                </button>
+                {!book.active ? (
+                  <button
+                    onClick={() => onDelete(book.id)}
+                    className='px-3 py-1 text-sm font-medium text-red-600 bg-red-100 rounded hover:bg-red-200 focus:outline-none'
+                  >
+                    Delete
+                  </button>
+                ) : null}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
