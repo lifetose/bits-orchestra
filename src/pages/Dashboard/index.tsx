@@ -14,8 +14,27 @@ const Dashboard = () => {
       const data = await getBooks();
       setBooks(data);
       setError(null);
-    } catch (error: any) {
-      setError(error.message || "An unknown error occurred");
+    } catch (err: unknown) {
+      console.error("Error saving item:", err);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else if (typeof err === "object" && err !== null && "data" in err) {
+        const errorData = err as {
+          data?: { message?: string } | string;
+          error?: string;
+        };
+        if (typeof errorData.data === "string") {
+          setError(errorData.data);
+        } else if (errorData.data?.message) {
+          setError(errorData.data.message);
+        } else if (errorData.error) {
+          setError(errorData.error);
+        } else {
+          setError("An unknown error occurred while saving.");
+        }
+      } else {
+        setError("An unknown error occurred while saving.");
+      }
     } finally {
       setLoading(false);
     }
