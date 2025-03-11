@@ -29,6 +29,16 @@
       "active": true,
       "createdAt": "2025-03-11T15:05:02.629Z",
       "modifiedAt": null
+    },
+    {
+      "title": "abc3",
+      "author": "a",
+      "category": "Fiction",
+      "isbn": 20,
+      "active": true,
+      "createdAt": "2025-03-11T20:47:19.649Z",
+      "modifiedAt": "2025-03-11T20:47:19.649Z",
+      "id": "7d91"
     }
   ]
 }

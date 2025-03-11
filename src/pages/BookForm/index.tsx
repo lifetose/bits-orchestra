@@ -1,6 +1,5 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { addBook, updateBook, IBook } from "../../api/books";
 import useBook from "@/hooks/useBook";
 
@@ -79,12 +78,11 @@ const BookForm = () => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    const bookData: IBook = {
+    const bookData: Omit<IBook, "id"> = {
       ...form,
       active: true,
       createdAt: new Date().toISOString(),
       modifiedAt: isEditMode ? new Date().toISOString() : null,
-      id: isEditMode ? id : uuidv4(),
     };
 
     if (isEditMode) {

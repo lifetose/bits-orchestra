@@ -36,7 +36,9 @@ export const getBookById = async (id: string): Promise<IBook | null> => {
   }
 };
 
-export const addBook = async (book: IBook): Promise<IBook | null> => {
+export const addBook = async (
+  book: Omit<IBook, "id">,
+): Promise<IBook | null> => {
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -51,7 +53,7 @@ export const addBook = async (book: IBook): Promise<IBook | null> => {
 
 export const updateBook = async (
   id: string,
-  book: IBook,
+  book: Omit<IBook, "id">,
 ): Promise<IBook | null> => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
