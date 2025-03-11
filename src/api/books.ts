@@ -9,12 +9,6 @@ export interface IBook {
   modifiedAt: string | null;
 }
 
-export interface ApiResponse<T> {
-  success: boolean;
-  data?: T;
-  message?: string;
-}
-
 const API_URL = "http://localhost:5000/books";
 
 const handleResponse = async <T>(response: Response): Promise<T> => {
