@@ -6,7 +6,7 @@ import { formatDate } from "@/utils/date";
 
 interface BookTableProps {
   books: IBook[];
-  onToggleActive: (book: IBook) => void;
+  onToggleActive: (id: string, book: IBook) => void;
   onDelete: (id: string) => void;
 }
 
@@ -50,7 +50,7 @@ const BookTable: React.FC<BookTableProps> = ({
                   Edit
                 </button>
                 <button
-                  onClick={() => onToggleActive(book)}
+                  onClick={() => onToggleActive(book.id, book)}
                   className={`px-3 py-1 mr-2 text-sm font-medium rounded focus:outline-none ${
                     book.active
                       ? "text-yellow-600 bg-yellow-100 hover:bg-yellow-200"

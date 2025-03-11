@@ -8,13 +8,13 @@ const Dashboard = () => {
   const { data, loading, error, refetch } = useBooks();
   const [filter, setFilter] = useState("active");
 
-  const toggleActive = async (book: IBook) => {
+  const toggleActive = async (id: string, book: IBook) => {
     const updatedBook = {
       ...book,
       active: !book.active,
       modifiedAt: new Date().toISOString(),
     };
-    await updateBook(updatedBook);
+    await updateBook(id, updatedBook);
     refetch();
   };
 
