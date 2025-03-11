@@ -1,0 +1,44 @@
+{
+  "books": [
+    {
+      "title": "Demo Book",
+      "author": "John Doe",
+      "category": "Fiction",
+      "isbn": 123456789044,
+      "active": true,
+      "createdAt": "2025-03-11T05:59:11.038Z",
+      "modifiedAt": "2025-03-11T05:59:11.038Z",
+      "id": "1"
+    },
+    {
+      "title": "12345",
+      "author": "123",
+      "category": "Non-Fiction",
+      "isbn": 2232,
+      "active": true,
+      "createdAt": "2025-03-10T17:44:41.426Z",
+      "modifiedAt": "2025-03-11T05:35:10.322Z",
+      "id": "7c98"
+    },
+    {
+      "id": "0722",
+      "title": "123",
+      "author": "123",
+      "category": "Fiction",
+      "isbn": 123,
+      "active": true,
+      "createdAt": "2025-03-11T05:34:58.704Z",
+      "modifiedAt": null
+    },
+    {
+      "id": "",
+      "title": "121",
+      "author": "111",
+      "category": "Fiction",
+      "isbn": 10,
+      "active": true,
+      "createdAt": "2025-03-11T06:01:52.021Z",
+      "modifiedAt": null
+    }
+  ]
+}

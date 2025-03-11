@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import AppRoutes from "./AppRoutes";
 
 function App() {
   return (
     <>
-      <Header />
-      <h1 className='text-3xl font-bold underline'>Hello world!123</h1>
+      <AppRoutes />
     </>
   );
 }
