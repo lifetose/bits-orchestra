@@ -52,6 +52,7 @@ const Dashboard = () => {
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
+                  className='border border-gray-300 rounded-md shadow-sm'
                 >
                   <option value='all'>Show All</option>
                   <option value='active'>Show Active</option>
