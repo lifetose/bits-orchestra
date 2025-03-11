@@ -15,7 +15,7 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
-const API_URL = "http://localhost:5000/books";
+const API_URL = "http://localhost:50010/books";
 
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
@@ -29,8 +29,7 @@ export const getBooks = async (): Promise<IBook[]> => {
     const response = await fetch(API_URL);
     return await handleResponse<IBook[]>(response);
   } catch (error) {
-    console.error("Failed to fetch books:", error);
-    return [];
+    throw new Error(`Failed to fetch books: ${error}`);
   }
 };
 
@@ -43,8 +42,7 @@ export const addBook = async (book: IBook): Promise<IBook | null> => {
     });
     return await handleResponse<IBook>(response);
   } catch (error) {
-    console.error("Failed to add book:", error);
-    return null;
+    throw new Error(`Failed to add book: ${error}`);
   }
 };
 
@@ -57,8 +55,7 @@ export const updateBook = async (book: IBook): Promise<IBook | null> => {
     });
     return await handleResponse<IBook>(response);
   } catch (error) {
-    console.error(`Failed to update book with ID ${book.id}:`, error);
-    return null;
+    throw new Error(`Failed to update book: ${error}`);
   }
 };
 
@@ -70,7 +67,6 @@ export const deleteBook = async (id: string): Promise<boolean> => {
     }
     return true;
   } catch (error) {
-    console.error(error);
-    return false;
+    throw new Error(`Failed to delete book: ${error}`);
   }
 };

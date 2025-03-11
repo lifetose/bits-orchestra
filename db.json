@@ -1,14 +1,14 @@
 {
   "books": [
     {
-      "title": "1234",
+      "id": "2c8ff75b-b545-4f7c-bb31-39050ec8972c",
+      "title": "12",
       "author": "12",
-      "category": "Non-Fiction",
+      "category": "Fiction",
       "isbn": 20,
       "active": true,
-      "createdAt": "2025-03-11T09:49:12.392Z",
-      "modifiedAt": "2025-03-11T09:49:12.392Z",
-      "id": "5b4a8ffa-216d-448a-910d-e1976ca35860"
+      "createdAt": "2025-03-11T09:51:01.065Z",
+      "modifiedAt": null
     }
   ]
 }
