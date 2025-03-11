@@ -16,9 +16,19 @@
       "author": "22",
       "category": "Fiction",
       "isbn": 20,
-      "active": true,
+      "active": false,
       "createdAt": "2025-03-11T12:11:52.486Z",
-      "modifiedAt": "2025-03-11T14:43:06.629Z"
+      "modifiedAt": "2025-03-11T15:05:08.044Z"
+    },
+    {
+      "id": "f66c0a35-f8a2-4299-9633-ddfd596941d4",
+      "title": "21",
+      "author": "12",
+      "category": "Fiction",
+      "isbn": 20,
+      "active": true,
+      "createdAt": "2025-03-11T15:05:02.629Z",
+      "modifiedAt": null
     }
   ]
 }

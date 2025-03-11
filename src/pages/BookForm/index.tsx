@@ -1,8 +1,6 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-
 import { v4 as uuidv4 } from "uuid";
-
 import { addBook, updateBook, IBook, getBookById } from "../../api/books";
 
 interface IBookForm {
@@ -32,6 +30,7 @@ const BookForm = () => {
   });
 
   const [errors, setErrors] = useState<IErrors>({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     if (isEditMode) {
@@ -51,10 +50,24 @@ const BookForm = () => {
           navigate("/not-found");
         }
       };
-
       fetchBook();
     }
   }, [id, isEditMode, navigate]);
+
+  useEffect(() => {
+    const validate = (): boolean => {
+      const newErrors: IErrors = {};
+      if (!form.title.trim()) newErrors.title = "Book title is required";
+      if (!form.author.trim()) newErrors.author = "Author name is required";
+      if (!form.category.trim()) newErrors.category = "Category is required";
+      if (!form.isbn) newErrors.isbn = "ISBN is required";
+
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    };
+
+    setIsFormValid(validate());
+  }, [form]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -66,19 +79,9 @@ const BookForm = () => {
     }));
   };
 
-  const validate = (): boolean => {
-    const newErrors: IErrors = {};
-    if (!form.title.trim()) newErrors.title = "Book title is required";
-    if (!form.author.trim()) newErrors.author = "Author name is required";
-    if (!form.category.trim()) newErrors.category = "Category is required";
-    if (!form.isbn) newErrors.isbn = "ISBN is required";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!isFormValid) return;
 
     const bookData: IBook = {
       ...form,
@@ -202,7 +205,12 @@ const BookForm = () => {
           <div>
             <button
               type='submit'
-              className='w-full mt-4 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'
+              disabled={!isFormValid}
+              className={`w-full mt-4 py-2 px-4 rounded-md transition duration-300 ${
+                isFormValid
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  : "bg-gray-400 text-gray-700 cursor-not-allowed"
+              }`}
             >
               {isEditMode ? "Edit Book" : "Add a Book"}
             </button>
