@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <div className='h-[70px] bg-blue-600'>
-      <header className='flex flex-col justify-center items-start h-full w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
-        <ul className='flex space-x-6'>
+    <div className='bg-blue-600'>
+      <header className='max-w-[1350px] mx-auto'>
+        <ul className='flex space-x-6 p-2'>
           <li>
             <Link
               to='/'

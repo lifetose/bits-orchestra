@@ -6,8 +6,18 @@
       "author": "123",
       "category": "Fiction",
       "isbn": 20,
-      "active": true,
+      "active": false,
       "createdAt": "2025-03-11T11:50:09.774Z",
+      "modifiedAt": "2025-03-11T12:10:54.070Z"
+    },
+    {
+      "id": "e03d1a8c-7207-4f9d-8c8a-126e38ee2db8",
+      "title": "22",
+      "author": "22",
+      "category": "Fiction",
+      "isbn": 20,
+      "active": true,
+      "createdAt": "2025-03-11T12:11:52.486Z",
       "modifiedAt": null
     }
   ]
