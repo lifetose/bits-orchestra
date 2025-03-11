@@ -37,7 +37,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div>
+    <div className='flex flex-col items-start w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
       <h1>Book List</h1>
       <Link to='/book'>Add a Book</Link>
 

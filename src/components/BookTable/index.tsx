@@ -18,8 +18,8 @@ const BookTable: React.FC<BookTableProps> = ({
   const navigate = useNavigate();
 
   return (
-    <div className='overflow-x-auto'>
-      <table className='min-w-full table-auto border-collapse border border-gray-200'>
+    <div className='w-full overflow-x-auto'>
+      <table className='w-full min-w-max'>
         <thead>
           <tr className='bg-gray-100 text-gray-600'>
             <th className='px-4 py-2 text-left'>Book Title</th>
