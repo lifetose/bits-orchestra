@@ -57,11 +57,10 @@ const BookForm = () => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    if (name === "isbn") {
-      setForm({ ...form, [name]: Number(value) });
-    } else {
-      setForm({ ...form, [name]: value });
-    }
+    setForm((prev) => ({
+      ...prev,
+      [name]: name === "isbn" ? Number(value) : value,
+    }));
   };
 
   const validate = (): boolean => {
@@ -111,7 +110,7 @@ const BookForm = () => {
             Back to Dashboard
           </Link>
         </div>
-        <form onSubmit={handleSubmit} className='space-y-4'>
+        <form onSubmit={handleSubmit} className='space-y-4 w-full'>
           <div>
             <label
               htmlFor='title'
