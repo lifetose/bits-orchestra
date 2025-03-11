@@ -48,7 +48,7 @@ const Dashboard = () => {
             <div>No books found.</div>
           ) : (
             <>
-              <div>
+              <div className='flex gap-2'>
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
