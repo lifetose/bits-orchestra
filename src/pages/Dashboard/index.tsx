@@ -39,7 +39,12 @@ const Dashboard = () => {
   return (
     <div className='flex flex-col items-start w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
       <h1>Book List</h1>
-      <Link to='/book'>Add a Book</Link>
+      <Link
+        to='/book'
+        className='bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300'
+      >
+        Add a Book
+      </Link>
 
       <div>
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>

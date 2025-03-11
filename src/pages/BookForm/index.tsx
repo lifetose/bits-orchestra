@@ -94,14 +94,14 @@ const BookForm = () => {
 
   return (
     <div className='flex flex-col items-start w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
-      <div className='w-full flex flex-col items-center '>
-        <div className='mb-6'>
+      <div className='w-full flex flex-col items-center'>
+        <div className='w-full flex flex-col items-center mb-6'>
           <h1 className='text-2xl font-semibold text-gray-700'>
             {isEditMode ? "Edit Book" : "Add a Book"}
           </h1>
           <Link
             to='/'
-            className='text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block'
+            className='bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300'
           >
             Back to Dashboard
           </Link>
