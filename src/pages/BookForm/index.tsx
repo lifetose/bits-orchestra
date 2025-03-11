@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { addBook, updateBook, getBooks, IBook } from "../../api/books";
+import { addBook, updateBook, IBook, getBookById } from "../../api/books";
 
 interface IBookForm {
   title: string;
@@ -36,8 +36,8 @@ const BookForm = () => {
   useEffect(() => {
     if (isEditMode) {
       const fetchBook = async () => {
-        const data = await getBooks();
-        const book = data.find((b) => b.id === id);
+        const book = await getBookById(id);
+
         if (book) {
           setForm({
             title: book.title,

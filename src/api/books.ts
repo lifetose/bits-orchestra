@@ -33,6 +33,15 @@ export const getBooks = async (): Promise<IBook[]> => {
   }
 };
 
+export const getBookById = async (id: string): Promise<IBook | null> => {
+  try {
+    const response = await fetch(`${API_URL}/${id}`);
+    return await handleResponse<IBook>(response);
+  } catch (error) {
+    throw new Error(`Failed to fetch book: ${error}`);
+  }
+};
+
 export const addBook = async (book: IBook): Promise<IBook | null> => {
   try {
     const response = await fetch(API_URL, {
