@@ -78,11 +78,13 @@ const BookForm = () => {
     e.preventDefault();
     if (!isFormValid) return;
 
+    const nowUtc = new Date().toISOString();
+
     const bookData: Omit<IBook, "id"> = {
       ...form,
       active: true,
-      createdAt: new Date().toISOString(),
-      modifiedAt: isEditMode ? new Date().toISOString() : null,
+      createdAt: isEditMode ? book?.createdAt || nowUtc : nowUtc,
+      modifiedAt: isEditMode ? nowUtc : null,
     };
 
     if (isEditMode) {
