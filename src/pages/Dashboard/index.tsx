@@ -1,48 +1,12 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { getBooks, updateBook, deleteBook, IBook } from "../../api/books";
+import { updateBook, deleteBook, IBook } from "../../api/books";
 import BookTable from "../../components/BookTable";
+import useBooks from "../../hooks/useBooks";
 
 const Dashboard = () => {
-  const [books, setBooks] = useState<IBook[]>([]);
+  const { data, loading, error, refetch } = useBooks();
   const [filter, setFilter] = useState("active");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchBooks = async () => {
-    try {
-      const data = await getBooks();
-      setBooks(data);
-      setError(null);
-    } catch (err: unknown) {
-      console.error("Error saving item:", err);
-      if (err instanceof Error) {
-        setError(err.message);
-      } else if (typeof err === "object" && err !== null && "data" in err) {
-        const errorData = err as {
-          data?: { message?: string } | string;
-          error?: string;
-        };
-        if (typeof errorData.data === "string") {
-          setError(errorData.data);
-        } else if (errorData.data?.message) {
-          setError(errorData.data.message);
-        } else if (errorData.error) {
-          setError(errorData.error);
-        } else {
-          setError("An unknown error occurred while saving.");
-        }
-      } else {
-        setError("An unknown error occurred while saving.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchBooks();
-  }, []);
 
   const toggleActive = async (book: IBook) => {
     const updatedBook = {
@@ -51,19 +15,19 @@ const Dashboard = () => {
       modifiedAt: new Date().toISOString(),
     };
     await updateBook(updatedBook);
-    fetchBooks();
+    refetch();
   };
 
   const handleDelete = async (id: string) => {
     await deleteBook(id);
-    fetchBooks();
+    refetch();
   };
 
   const filteredBooks = useMemo(() => {
-    return books.filter(
+    return (data ?? []).filter(
       (book) => filter === "all" || book.active === (filter === "active"),
     );
-  }, [books, filter]);
+  }, [data, filter]);
 
   return (
     <div className='flex flex-col items-start w-full max-w-[1350px] mx-auto p-[10px] gap-2'>
@@ -80,7 +44,7 @@ const Dashboard = () => {
           >
             Add a Book
           </Link>
-          {books.length === 0 ? (
+          {data && data.length === 0 ? (
             <div>No books found.</div>
           ) : (
             <>
@@ -94,11 +58,11 @@ const Dashboard = () => {
                   <option value='deactivated'>Show Deactivated</option>
                 </select>
                 <span>
-                  Showing {filteredBooks.length} of {books.length}
+                  Showing {filteredBooks?.length} of {data?.length}
                 </span>
               </div>
-              {filteredBooks.length === 0 ? (
-                <div>No books mathcing the filter.</div>
+              {filteredBooks?.length === 0 ? (
+                <div>No books matching the filter.</div>
               ) : (
                 <BookTable
                   books={filteredBooks}
