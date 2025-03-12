@@ -22,11 +22,7 @@ const BookForm = () => {
   const navigate = useNavigate();
   const isEditMode = !!id;
 
-  const {
-    data: book,
-    loading,
-    error,
-  } = useBook(id || "", { skip: !isEditMode });
+  const { data: book, loading, error } = useBook(id, { skip: !isEditMode });
 
   const [form, setForm] = useState<IBookForm>({
     title: "",
