@@ -1,11 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 
-const useFetch = <T>(fetchFunction: () => Promise<T>) => {
+const useFetch = <T>(
+  fetchFunction: () => Promise<T>,
+  { skip = false } = {},
+) => {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(!skip);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
+    if (skip) return;
     setLoading(true);
     try {
       const result = await fetchFunction();
@@ -19,7 +23,7 @@ const useFetch = <T>(fetchFunction: () => Promise<T>) => {
     } finally {
       setLoading(false);
     }
-  }, [fetchFunction]);
+  }, [fetchFunction, skip]);
 
   useEffect(() => {
     fetchData();

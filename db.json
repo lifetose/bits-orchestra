@@ -9,6 +9,16 @@
       "createdAt": "2025-03-11T22:20:12.101Z",
       "modifiedAt": "2025-03-11T22:27:23.511Z",
       "id": "1cbf"
+    },
+    {
+      "id": "0174",
+      "title": "123",
+      "author": "123",
+      "category": "Fiction",
+      "isbn": 20,
+      "active": true,
+      "createdAt": "2025-03-12T05:49:17.168Z",
+      "modifiedAt": null
     }
   ]
 }
