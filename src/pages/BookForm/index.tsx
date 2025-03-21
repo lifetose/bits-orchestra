@@ -4,6 +4,7 @@ import { addBook, updateBook, IBook } from "../../api/books";
 import useBook from "@/hooks/useBook";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
+import ErrorMessage from "@/components/ErrorMessage";
 
 interface IBookForm {
   title: string;
@@ -128,31 +129,33 @@ const BookForm = () => {
               name='title'
               value={form.title}
               onChange={handleChange}
-              error={errors.title}
             />
+            {errors.title ? <ErrorMessage message={errors.title} /> : null}
             <Input
               label='Author Name'
               name='author'
               value={form.author}
               onChange={handleChange}
-              error={errors.author}
             />
+            {errors.author ? <ErrorMessage message={errors.author} /> : null}
             <Select
               label='Category'
               name='category'
               value={form.category}
               onChange={handleChange}
               options={categoryOptions}
-              error={errors.category}
             />
+            {errors.category ? (
+              <ErrorMessage message={errors.category} />
+            ) : null}
             <Input
               label='ISBN'
               name='isbn'
               type='number'
               value={form.isbn}
               onChange={handleChange}
-              error={errors.isbn}
             />
+            {errors.isbn ? <ErrorMessage message={errors.isbn} /> : null}
             <button
               type='submit'
               disabled={!isFormValid}

@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-import ErrorMessage from "./ErrorMessage";
 
 interface SelectProps {
   label: string;
@@ -7,17 +6,9 @@ interface SelectProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   options: { value: string; label: string }[];
-  error?: string;
 }
 
-const Select = ({
-  label,
-  name,
-  value,
-  onChange,
-  options,
-  error,
-}: SelectProps) => (
+const Select = ({ label, name, value, onChange, options }: SelectProps) => (
   <div>
     <label htmlFor={name} className='block text-sm font-medium text-gray-700'>
       {label}
@@ -36,7 +27,6 @@ const Select = ({
         </option>
       ))}
     </select>
-    {error && <ErrorMessage message={error} />}
   </div>
 );
 
