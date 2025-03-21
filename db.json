@@ -19,6 +19,16 @@
       "active": true,
       "createdAt": "2025-03-12T05:49:17.168Z",
       "modifiedAt": null
+    },
+    {
+      "title": "1244",
+      "author": "12",
+      "category": "Non-Fiction",
+      "isbn": 20,
+      "active": true,
+      "createdAt": "2025-03-21T08:01:34.754Z",
+      "modifiedAt": "2025-03-21T08:01:53.486Z",
+      "id": "7b63"
     }
   ]
 }

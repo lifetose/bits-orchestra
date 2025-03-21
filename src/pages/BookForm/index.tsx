@@ -2,6 +2,8 @@ import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { addBook, updateBook, IBook } from "../../api/books";
 import useBook from "@/hooks/useBook";
+import Input from "@/components/Input";
+import Select from "@/components/Select";
 
 interface IBookForm {
   title: string;
@@ -16,6 +18,13 @@ interface IErrors {
   category?: string;
   isbn?: string;
 }
+
+const categoryOptions = [
+  { value: "Fiction", label: "Fiction" },
+  { value: "Non-Fiction", label: "Non-Fiction" },
+  { value: "Sci-Fi", label: "Sci-Fi" },
+  { value: "Biography", label: "Biography" },
+];
 
 const BookForm = () => {
   const { id } = useParams<{ id?: string }>();
@@ -114,104 +123,47 @@ const BookForm = () => {
           <div className='text-red-600'>Error: {error}</div>
         ) : (
           <form onSubmit={handleSubmit} className='space-y-4 w-full'>
-            <div>
-              <label
-                htmlFor='title'
-                className='block text-sm font-medium text-gray-700'
-              >
-                Book Title
-              </label>
-              <input
-                type='text'
-                name='title'
-                id='title'
-                value={form.title}
-                onChange={handleChange}
-                className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              />
-              {errors.title && (
-                <span className='text-red-600 text-sm'>{errors.title}</span>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor='author'
-                className='block text-sm font-medium text-gray-700'
-              >
-                Author Name
-              </label>
-              <input
-                type='text'
-                name='author'
-                id='author'
-                value={form.author}
-                onChange={handleChange}
-                className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              />
-              {errors.author && (
-                <span className='text-red-600 text-sm'>{errors.author}</span>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor='category'
-                className='block text-sm font-medium text-gray-700'
-              >
-                Category
-              </label>
-              <select
-                name='category'
-                id='category'
-                value={form.category}
-                onChange={handleChange}
-                className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              >
-                <option value=''>Select Category</option>
-                <option value='Fiction'>Fiction</option>
-                <option value='Non-Fiction'>Non-Fiction</option>
-                <option value='Sci-Fi'>Sci-Fi</option>
-                <option value='Biography'>Biography</option>
-              </select>
-              {errors.category && (
-                <span className='text-red-600 text-sm'>{errors.category}</span>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor='isbn'
-                className='block text-sm font-medium text-gray-700'
-              >
-                ISBN
-              </label>
-              <input
-                type='number'
-                name='isbn'
-                id='isbn'
-                value={form.isbn}
-                onChange={handleChange}
-                className='mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              />
-              {errors.isbn && (
-                <span className='text-red-600 text-sm'>{errors.isbn}</span>
-              )}
-            </div>
-
-            <div>
-              <button
-                type='submit'
-                disabled={!isFormValid}
-                className={`w-full mt-4 py-2 px-4 rounded-md transition duration-300 ${
-                  isFormValid
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-gray-400 text-gray-700 cursor-not-allowed"
-                }`}
-              >
-                {isEditMode ? "Edit Book" : "Add a Book"}
-              </button>
-            </div>
+            <Input
+              label='Book Title'
+              name='title'
+              value={form.title}
+              onChange={handleChange}
+              error={errors.title}
+            />
+            <Input
+              label='Author Name'
+              name='author'
+              value={form.author}
+              onChange={handleChange}
+              error={errors.author}
+            />
+            <Select
+              label='Category'
+              name='category'
+              value={form.category}
+              onChange={handleChange}
+              options={categoryOptions}
+              error={errors.category}
+            />
+            <Input
+              label='ISBN'
+              name='isbn'
+              type='number'
+              value={form.isbn}
+              onChange={handleChange}
+              error={errors.isbn}
+            />
+            <button
+              type='submit'
+              disabled={!isFormValid}
+              className={`w-full mt-4 py-2 px-4 rounded-md ${
+                isFormValid
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  : "bg-gray-400 text-gray-700 cursor-not-allowed"
+              }`}
+            >
+              {isEditMode ? "Edit Book" : "Add a Book"}
+            </button>
           </form>
         )}
       </div>
