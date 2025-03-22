@@ -5,10 +5,40 @@
       "author": "12345",
       "category": "Fiction",
       "isbn": 2056,
-      "active": true,
+      "active": false,
       "createdAt": "2025-03-12T05:49:17.168Z",
-      "modifiedAt": "2025-03-22T08:53:31.001Z",
+      "modifiedAt": "2025-03-22T08:54:05.151Z",
       "id": "0174"
+    },
+    {
+      "id": "a8ff",
+      "title": "12345",
+      "author": "12345",
+      "category": "Fiction",
+      "isbn": 2023,
+      "active": true,
+      "createdAt": "2025-03-22T08:54:39.766Z",
+      "modifiedAt": null
+    },
+    {
+      "id": "eea4",
+      "title": "121221",
+      "author": "211212",
+      "category": "Non-Fiction",
+      "isbn": 22220,
+      "active": false,
+      "createdAt": "2025-03-22T08:55:20.315Z",
+      "modifiedAt": "2025-03-22T08:55:39.335Z"
+    },
+    {
+      "id": "ccc6",
+      "title": "21121221",
+      "author": "12212121",
+      "category": "Fiction",
+      "isbn": 22220,
+      "active": true,
+      "createdAt": "2025-03-22T08:55:28.315Z",
+      "modifiedAt": null
     }
   ]
 }
