@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { addBook, updateBook, IBook } from "../../api/books";
 import useBook from "@/hooks/useBook";
@@ -6,14 +6,14 @@ import Input from "@/components/Input";
 import Select from "@/components/Select";
 import ErrorMessage from "@/components/ErrorMessage";
 
-interface IBookForm {
+interface IFormData {
   title: string;
   author: string;
   category: string;
   isbn: number;
 }
 
-interface IErrors {
+interface IFormErrors {
   title?: string;
   author?: string;
   category?: string;
@@ -31,22 +31,21 @@ const BookForm = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const isEditMode = !!id;
-
   const { data: book, loading, error } = useBook(id, { skip: !isEditMode });
 
-  const [form, setForm] = useState<IBookForm>({
+  const [formData, setFormData] = useState<IFormData>({
     title: "",
     author: "",
     category: "",
     isbn: 0,
   });
 
-  const [errors, setErrors] = useState<IErrors>({});
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [errors, setErrors] = useState<IFormErrors>({});
+  const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     if (book) {
-      setForm({
+      setFormData({
         title: book.title,
         author: book.author,
         category: book.category,
@@ -56,38 +55,74 @@ const BookForm = () => {
   }, [book]);
 
   useEffect(() => {
-    const validate = (): boolean => {
-      const newErrors: IErrors = {};
-      if (!form.title.trim()) newErrors.title = "Book title is required";
-      if (!form.author.trim()) newErrors.author = "Author name is required";
-      if (!form.category.trim()) newErrors.category = "Category is required";
-      if (!form.isbn) newErrors.isbn = "ISBN is required";
-
-      setErrors(newErrors);
-      return Object.keys(newErrors).length === 0;
+    const trimmedData = {
+      title: formData.title.trim(),
+      author: formData.author.trim(),
+      category: formData.category,
+      isbn: formData.isbn,
     };
 
-    setIsFormValid(validate());
-  }, [form]);
+    const isFormValid =
+      Object.values(trimmedData).every((value) => value) &&
+      Object.values(errors).every((error) => !error);
+
+    setIsValid(isFormValid);
+  }, [formData, errors]);
+
+  const validateField = (field: keyof IFormData, value: string | number) => {
+    let errorMsg: string | undefined;
+
+    switch (field) {
+      case "title":
+        if (!value || value.toString().trim().length < 5) {
+          errorMsg = "Title must be at least 5 characters long";
+        }
+        break;
+      case "author":
+        if (!value || value.toString().trim().length < 5) {
+          errorMsg = "Author name must be at least 5 characters long";
+        }
+        break;
+      case "category":
+        if (!value) errorMsg = "Category is required";
+        break;
+      case "isbn":
+        if (!value || typeof value !== "number" || value < 1000) {
+          errorMsg = "ISBN must be at least 4 digits long";
+        }
+        break;
+      default:
+        break;
+    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: errorMsg,
+    }));
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: name === "isbn" ? Number(value) : value,
+    const fieldValue = name === "isbn" ? parseInt(value, 10) || 0 : value;
+
+    validateField(name as keyof IFormData, fieldValue);
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: fieldValue,
     }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!isFormValid) return;
+
+    if (!isValid) return;
 
     const nowUtc = new Date().toISOString();
-
     const bookData: Omit<IBook, "id"> = {
-      ...form,
+      ...formData,
       active: true,
       createdAt: isEditMode ? book?.createdAt || nowUtc : nowUtc,
       modifiedAt: isEditMode ? nowUtc : null,
@@ -118,6 +153,7 @@ const BookForm = () => {
             Back to Dashboard
           </Link>
         </div>
+
         {loading ? (
           <div>Loading...</div>
         ) : error ? (
@@ -127,40 +163,42 @@ const BookForm = () => {
             <Input
               label='Book Title'
               name='title'
-              value={form.title}
+              value={formData.title}
               onChange={handleChange}
             />
-            {errors.title ? <ErrorMessage message={errors.title} /> : null}
+            {errors.title && <ErrorMessage message={errors.title} />}
+
             <Input
               label='Author Name'
               name='author'
-              value={form.author}
+              value={formData.author}
               onChange={handleChange}
             />
-            {errors.author ? <ErrorMessage message={errors.author} /> : null}
-            <Select
-              label='Category'
-              name='category'
-              value={form.category}
-              onChange={handleChange}
-              options={categoryOptions}
-            />
-            {errors.category ? (
-              <ErrorMessage message={errors.category} />
-            ) : null}
+            {errors.author && <ErrorMessage message={errors.author} />}
+
             <Input
               label='ISBN'
               name='isbn'
               type='number'
-              value={form.isbn}
+              value={formData.isbn ? formData.isbn.toString() : ""}
               onChange={handleChange}
             />
-            {errors.isbn ? <ErrorMessage message={errors.isbn} /> : null}
+            {errors.isbn && <ErrorMessage message={errors.isbn} />}
+
+            <Select
+              label='Category'
+              name='category'
+              value={formData.category}
+              onChange={handleChange}
+              options={categoryOptions}
+            />
+            {errors.category && <ErrorMessage message={errors.category} />}
+
             <button
               type='submit'
-              disabled={!isFormValid}
+              disabled={!isValid}
               className={`w-full mt-4 py-2 px-4 rounded-md ${
-                isFormValid
+                isValid
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "bg-gray-400 text-gray-700 cursor-not-allowed"
               }`}
