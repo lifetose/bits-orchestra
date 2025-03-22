@@ -7,7 +7,7 @@
       "isbn": 2056,
       "active": false,
       "createdAt": "2025-03-12T05:49:17.168Z",
-      "modifiedAt": "2025-03-22T08:54:05.151Z",
+      "modifiedAt": "2025-03-22T08:55:54.432Z",
       "id": "0174"
     },
     {
@@ -18,7 +18,7 @@
       "isbn": 2023,
       "active": true,
       "createdAt": "2025-03-22T08:54:39.766Z",
-      "modifiedAt": null
+      "modifiedAt": "2025-03-22T08:56:09.715Z"
     },
     {
       "id": "eea4",
@@ -28,7 +28,7 @@
       "isbn": 22220,
       "active": false,
       "createdAt": "2025-03-22T08:55:20.315Z",
-      "modifiedAt": "2025-03-22T08:55:39.335Z"
+      "modifiedAt": "2025-03-22T08:55:55.583Z"
     },
     {
       "id": "ccc6",
