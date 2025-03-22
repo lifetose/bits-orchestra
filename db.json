@@ -1,44 +1,14 @@
 {
   "books": [
     {
-      "title": "123",
-      "author": "123",
+      "title": "123456",
+      "author": "12345",
       "category": "Fiction",
-      "isbn": 202,
-      "active": false,
-      "createdAt": "2025-03-11T22:20:12.101Z",
-      "modifiedAt": "2025-03-11T22:27:23.511Z",
-      "id": "1cbf"
-    },
-    {
-      "id": "0174",
-      "title": "123",
-      "author": "123",
-      "category": "Fiction",
-      "isbn": 20,
+      "isbn": 2056,
       "active": true,
       "createdAt": "2025-03-12T05:49:17.168Z",
-      "modifiedAt": null
-    },
-    {
-      "title": "1244",
-      "author": "12",
-      "category": "Non-Fiction",
-      "isbn": 20,
-      "active": true,
-      "createdAt": "2025-03-21T08:01:34.754Z",
-      "modifiedAt": "2025-03-21T08:01:53.486Z",
-      "id": "7b63"
-    },
-    {
-      "id": "6959",
-      "title": "",
-      "author": "",
-      "category": "",
-      "isbn": 0,
-      "active": true,
-      "createdAt": "2025-03-22T07:27:35.871Z",
-      "modifiedAt": null
+      "modifiedAt": "2025-03-22T08:53:31.001Z",
+      "id": "0174"
     }
   ]
 }
